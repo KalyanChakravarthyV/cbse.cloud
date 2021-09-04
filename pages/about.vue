@@ -19,7 +19,9 @@
             strongly believe Quality Education is the backbone for Quality of
             Governance.
           </p>
-
+        </div>
+      </template>
+      <!--
           <h3>Another Fake Heading</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
@@ -27,7 +29,6 @@
             sunt temporibus. Distinctio doloremque eum magni nostrum quasi
             ratione rem repudiandae sit!
           </p>
-          <quote-card />
           <h3>Still More Fake Content</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
@@ -39,8 +40,8 @@
             quisquam saepe? Alias architecto blanditiis consequatur consequuntur
             dicta ipsa iste modi provident, quod, similique veritatis.
           </p>
+          <quote-card />
         </div>
-
         <div class="tile is-ancestor">
           <div class="tile is-parent">
             <article class="tile is-child box">
@@ -90,17 +91,19 @@
         </h3>
         <posts-grid :per-row="1" :number="2" />
       </template>
+      -->
     </main-section>
   </div>
 </template>
+
 <script>
-import QuoteCard from '~/components/cards/QuoteCard'
+/* import QuoteCard from '~/components/cards/QuoteCard' */
 export default {
   head() {
     return {
       title: `About | ${this.$siteConfig.siteName}`
     }
-  },
-  components: { QuoteCard }
+  }
+  /* components: { QuoteCard } */
 }
 </script>

@@ -17,9 +17,9 @@ export const modules = [
   'nuxt-fontawesome',
   'nuxt-responsive-loader'
 ]
-if (siteConfig.googleAnalytics.on && siteConfig.googleAnalytics.id) {
-  modules.push('@nuxtjs/google-gtag')
-}
+// if (siteConfig.googleAnalytics.on && siteConfig.googleAnalytics.id) {
+// modules.push('@nuxtjs/google-gtag')
+// }
 
 export const modulesSettings = {
   fontawesome: {
@@ -47,8 +47,8 @@ export const modulesSettings = {
     quality: 65, // images are compressed with medium quality
     adapter: require('responsive-loader/sharp'),
     disable: process.env.NODE_ENV === 'development'
-  },
-  'google-gtag': {
-    id: siteConfig.googleAnalytics.id
-  }
+  }//,
+  // 'google-gtag': {
+  //   id: "NOTHING"//siteConfig.googleAnalytics.id
+  // }
 }

@@ -2,7 +2,7 @@
   <div id="about-page" class="page-wrapper about-page content-page">
     <site-hero
       title="About Us"
-      subtitle="Example About Page"
+      subtitle="About cbse.cloud"
       image="/uploads/about-hero.jpg"
     ></site-hero>
     <main-section theme="sidebar-right">
@@ -11,14 +11,13 @@
           <h3>Fake Heading</h3>
           <p>
             <strong>
-              Edit this page in<code>/pages/about.vue</code>to fit your needs.
+              Strictly "Not for Profit"
             </strong>
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-            eligendi impedit inventore ipsa laboriosam libero magnam modi odio,
-            sunt temporibus. Distinctio doloremque eum magni nostrum quasi
-            ratione rem repudiandae sit!
+            cbse.cloud aims to provide teaching resouces to students, We
+            strongly believe Quality Education is the backbone for Quality of
+            Governance.
           </p>
 
           <h3>Another Fake Heading</h3>

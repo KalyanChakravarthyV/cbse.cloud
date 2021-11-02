@@ -1,7 +1,9 @@
 <template>
-  <MyVue/>
+  <SearchPanel />
 </template>
 
 <script>
+
 export default {}
+
 </script>

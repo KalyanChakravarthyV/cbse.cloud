@@ -1,13 +1,14 @@
 <template>
-
   <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title"> Search</h1>
-      <h2 class="subtitle"> All CBSE Books </h2>
+    <div class="kv-me">
+      <h1 class="title">All CBSE books</h1>
+      <!-- <h2 class="subtitle"> All CBSE Books </h2> -->
+      <input type="text" v-model="qStr" />
+      <button type="button" @click="search()" v-on:click="counter += 1">Search</button>
+      <!-- <p>The button above has been clicked {{ counter }} times and recent search string '{{ qStr }}'</p> -->
     </div>
   </section>
-  
+
   <!--
   <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
@@ -24,8 +25,41 @@
   -->
 </template>
 
-<style>
+<style scoped>
+.title{
+  height: 25px;
+  color: rgb(0, 255, 42);
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(129, 126, 126);
+}
 .kv-me {
   height: 180px;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
 }
 </style>
+
+
+<script>
+
+export default {
+
+  data() {
+
+    return {
+      qStr: '',
+      counter: 0
+    }
+
+
+  },
+  methods: {
+
+    search() {
+      console.log(`The button above has been clicked ${this.counter} times and recent search string ${this.qStr}`)
+    }
+  }
+}
+</script>

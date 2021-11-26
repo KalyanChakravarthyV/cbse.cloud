@@ -6,7 +6,7 @@
       v-model="sQ"
       placeholder="for e.g: Trignometry"
     />
-    <cv-button @click="onClick">Go!</cv-button>
+    <cv-button @click="onClick" >Go!</cv-button>
     <cv-modal :visible="visible" @modal-hidden="modalClosed">
       <template slot="title">Welcome to cbse.cloud</template>
       <template slot="content">

@@ -3,27 +3,47 @@
 <header class="header">
         <ul class="nav-items">
             <li>
-                <nuxt-link to="/">Home</nuxt-link>
+                <cv-link to="/">Home</cv-link>
             </li>
-            <li>      <nuxt-link to="/about">About</nuxt-link>
+            <li>      <cv-link to="/about">About</cv-link>
 
             </li>
-            <li>      <nuxt-link to="/contact">Contact</nuxt-link>
+            <li>      <cv-link to="/contact">Contact</cv-link>
 
             </li>
         </ul>
     </header>
-    -->
+  <cv-overflow-menu
+    :flip-menu="flipMenu"
+    :up="up"
+    :offset="offset"
+    :label="label"
+    :tip-position="tipPosition"
+    :tip-alignment="tipAlignment"
+  >
+    <cv-overflow-menu-item primaryfocus>
+      <cv-link to="/">Home</cv-link>
+    </cv-overflow-menu-item>
 
-  <cv-overflow-menu :label="label">
-    <cv-overflow-menu-item primary-focus>
-      <nuxt-link to="/">Home</nuxt-link>
+    <cv-overflow-menu-item>
+      <cv-link to="/about">About</cv-link>
     </cv-overflow-menu-item>
     <cv-overflow-menu-item>
-      <nuxt-link to="/about">About</nuxt-link>
+      <cv-link to="/contact">Contact</cv-link>
     </cv-overflow-menu-item>
-    <cv-overflow-menu-item itemref="/contact">
-      <nuxt-link to="/contact">Contact</nuxt-link>
+  </cv-overflow-menu>
+
+    -->
+
+    <cv-overflow-menu :label="label">
+    <cv-overflow-menu-item primary-focus>
+      <cv-link to="/">Home</cv-link>
+    </cv-overflow-menu-item>
+    <cv-overflow-menu-item >
+      <cv-link to="/about"  > About</cv-link>
+    </cv-overflow-menu-item>
+    <cv-overflow-menu-item disabled>
+      <cv-link to="/contact">Contact</cv-link>
     </cv-overflow-menu-item>
   </cv-overflow-menu>
 </template>
@@ -68,7 +88,23 @@ export default {
   data() {
     return {
       label: "Home",
+      "flipMenu": false,
+      "up": false,
+      "offset": {
+        "left": 0,
+        "top": 0
+      },
+      "label": "Oveflow menu",
+      "tipPosition": "right",
+      "tipAlignment": "center"
     };
   },
+  methods: {
+
+    navigate(data) {
+      console.log(data)
+    }
+
+  }
 };
 </script>

@@ -1,13 +1,15 @@
 <template>
-  <div class="sample">
-    <!-- <h1>Search through all of the books</h1> -->
-    <cv-text-input
-      label="Search"
-      v-model="sQ"
-      placeholder="for e.g: Trignometry"
-    />
-    <cv-button @click="onClick">Go!</cv-button>
-    <!-- <cv-modal :visible="visible" @modal-hidden="modalClosed">
+  
+  <div style="margin: 6px; padding: 10px">
+    <div class="search_box">
+      <!-- <h1>Search through all of the books</h1> -->
+      <cv-text-input
+        label="Search"
+        v-model="sQ"
+        placeholder="for e.g: Trignometry" @keyup.enter="onClick()"
+      />
+      <cv-button @click="onClick">Go!</cv-button>
+      <!-- <cv-modal :visible="visible" @modal-hidden="modalClosed">
       <template slot="title">Welcome to cbse.cloud</template>
       <template slot="content">
         <p>
@@ -19,8 +21,8 @@
       </template>
     </cv-modal> -->
 
-    <SearchResults :searchResults="searchResults"/>
-
+      <SearchResults :searchResults="searchResults" />
+    </div>
   </div>
 </template>
 
@@ -31,8 +33,7 @@ export default {
     return {
       sQ: "",
       visible: false,
-      searchResults : []
-          
+      searchResults: [],
     };
   },
   methods: {
@@ -43,45 +44,41 @@ export default {
     modalClosed() {
       this.visible = false;
     },
-
-    getElasticSearchQuery(qString){
-
+    getElasticSearchQuery(qString) {
       let query = {
-          query: {
-            match: {
-              data: {
-                query: qString,
-              },
+        query: {
+          match: {
+            data: {
+              query: qString,
             },
           },
+        },
 
-          highlight: {
-            pre_tags: ["<bold><em>"],
-            post_tags: ["</em></bold>"],
-            fields: {
-              data: {},
-            },
+        highlight: {
+          pre_tags: ["<bold><em>"],
+          post_tags: ["</em></bold>"],
+          fields: {
+            data: {},
           },
+        },
 
-          fields: [
-            "classNum",
-            "class",
-            "pageNumber",
-            "subjectName",
-            "chapter",
-            "pdfUrl",
-          ],
-          _source: false, 
-        }
+        fields: [
+          "classNum",
+          "class",
+          "pageNumber",
+          "subjectName",
+          "chapter",
+          "pdfUrl",
+        ],
+        _source: false,
+      };
 
-      return JSON.stringify(query)
-
+      return JSON.stringify(query);
     },
     search() {
-      this.responseAvailable = false
+      this.responseAvailable = false;
 
-      this.searchResults = []
-      
+      this.searchResults = [];
 
       fetch("https://elastic.cbse.cloud/ncert/_search", {
         method: "POST",
@@ -100,12 +97,24 @@ export default {
           }
         })
         .then((response) => {
-
           console.log(JSON.stringify(response));
 
-          response.hits.hits.forEach(element => {
-            this.searchResults.push([element.fields.class[0], element.fields.subjectName[0],element.fields.chapter[0] ,element.highlight.data.join(),element.fields.pdfUrl[0]+"#page="+element.fields.pageNumber[0] ])
-            console.log([element.fields.class[0], element.fields.subjectName[0],element.fields.chapter[0], element.fields.pageNumber[0],element.fields.pdfUrl[0]])
+          response.hits.hits.forEach((element) => {
+            this.searchResults.push([
+              element.fields.class[0],
+              element.fields.subjectName[0] + "-" + element.fields.chapter[0],
+              element.highlight.data.join("...<br/>") + "...",
+              element.fields.pdfUrl[0] +
+                "#page=" +
+                element.fields.pageNumber[0],
+            ]);
+            console.log([
+              element.fields.class[0],
+              element.fields.subjectName[0],
+              element.fields.chapter[0],
+              element.fields.pageNumber[0],
+              element.fields.pdfUrl[0],
+            ]);
           });
 
           // this.result = response.body;
@@ -120,13 +129,12 @@ export default {
 </script>
 
 <style>
-.sample {
-  display: flex;
+.search_box {
+  display: inline;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 600px;
-  margin: 5% auto;
+  margin: 15% auto;
 }
 
 .cv-text-input {

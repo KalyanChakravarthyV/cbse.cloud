@@ -1,20 +1,17 @@
 <template>
   <div class="margin: 6px">
-    <h3>About cbse.cloud</h3>
+    <h3>About cbse.cloud</h3> 
 
     <p>
-      An open-source always free-to-use platform whose short-term goal is to
-      make the CBSE(NCERT) textbooks searchable and a long-term vision of making
-      education affordable to everyone
-    </p>
+      An open-source, always free-to-use platform making textbooks searchable</p>
     <br><br>
-  <h4>Built On</h4>
+  <h5>Powered by:</h5>
   <p>
   <ul>
-    <li>IBM Carbon Design System<li>
-    <li>VueJS</li>
-    <li>NuxtJS</li>
-    
+    <li>IBM Carbon Design System with VueJS (NuxtJS)</li>
+    <li>Elasticsearch</li>
+    <li>Oracle Cloud Infrastracture</li>
+
   </ul>
   </p>
 
@@ -37,7 +34,7 @@ export default {
 
 <style lang="css" scoped>
 div {
-  margin: 21px;
+  margin: 6px;
 }
 p {
   margin: 3px;

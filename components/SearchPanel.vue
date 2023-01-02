@@ -76,6 +76,9 @@ export default {
       return JSON.stringify(query);
     },
     search() {
+
+      this.$posthog.capture('search', { property: this.sQ })
+
       this.responseAvailable = false;
 
       this.searchResults = [];
@@ -97,7 +100,6 @@ export default {
           }
         })
         .then((response) => {
-          console.log(JSON.stringify(response));
 
           response.hits.hits.forEach((element) => {
             this.searchResults.push([

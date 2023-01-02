@@ -22,11 +22,6 @@
 <script>
 export default {
   validate(data) {
-
-    // console.log("data that has come to this page: ")
-    // console.log(data.id)
-    console.log(data)
-
     return true
   }
 };

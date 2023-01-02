@@ -76,8 +76,7 @@ export default {
       return JSON.stringify(query);
     },
     search() {
-
-      this.$posthog.capture('search', { property: this.sQ })
+      this.$posthog.capture(`searched '${this.sQ}'`, { searchString: this.sQ })
 
       this.responseAvailable = false;
 

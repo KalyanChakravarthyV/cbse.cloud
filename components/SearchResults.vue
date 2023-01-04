@@ -2,19 +2,6 @@
   <!-- width: 300px;-->
 
   <div style="margin:6px; padding: 10px;">
-    <!-- <cv-data-table
-      :title="title"
-      :columns="columns"
-      :data="searchResults"
-      :pagination="basicPagination"
-      :overflow-menu="true"
-      ref="table"
-      :hidden="visible"
-      use_htmlData="true"
-      >{{ msg }}</cv-data-table
-    > -->
-
-
 
     <cv-data-table :pagination="basicPagination" ref="table"   :zebra="true">
       <template  slot="data">
@@ -26,14 +13,13 @@
           <cv-tile :zebra="true">
               <h4>{{row[0]}} - {{row[1]}}</h4>
 
-        <cv-link style="padding:6px; color: #123;"
-              :href="row[3]"
-              target="_blank"
-              v-html="row[2]"
-            ></cv-link>
+          <cv-link style="padding:6px; color: #123;"
+                :href="row[3]"
+                target="_blank"
+                v-html="row[2]"
+              ></cv-link>
           </cv-tile>
-    </div>
-          <!-- <cv-data-table-cell v-for="(cell, cellIndex) in row" :key="`${cellIndex}`" :value="`${cellIndex}`" v-html="cell"></cv-data-table-cell> -->
+        </div>
         </cv-data-table-row>
       </template>
     </cv-data-table>
@@ -49,12 +35,7 @@ export default {
   },
 
   data() {
-    return {
-      title: "Search Results",
-      visible: false,
-      basicPagination: false,
-      columns: ["Class/Grade", "Subject", "Highlights", "URL"],
-    };
+    return {};
   },
   methods: {
     actionSelected(data) {

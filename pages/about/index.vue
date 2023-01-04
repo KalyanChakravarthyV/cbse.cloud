@@ -8,9 +8,10 @@
   <h5>Powered by:</h5>
   <p>
   <ul>
-    <li>IBM Carbon Design System with VueJS (NuxtJS)</li>
-    <li>Elasticsearch</li>
-    <li>Oracle Cloud Infrastracture</li>
+    <li><a href="https://netlify.app">Netlify</a></li>
+    <li><a href="https://carbondesignsystem.com" target="_blank">IBM Carbon Design System with VueJS (NuxtJS)</a></li>
+    <li><a href="https://elastic.co" target="_blank">Elasticsearch</a></li>
+    <li><a href="https://oci.com" target="_blank">Oracle Cloud Infrastracture</a></li>
 
   </ul>
   </p>

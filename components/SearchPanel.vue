@@ -6,7 +6,7 @@
       <cv-text-input
         label="Search"
         v-model="sQ"
-        placeholder="for e.g: Trignometry" @keyup.enter="onClick()"
+        placeholder="for e.g: Trigonometry" @keyup.enter="onClick()"
       />
       <cv-button @click="onClick">Go!</cv-button>
       <!-- <cv-modal :visible="visible" @modal-hidden="modalClosed">

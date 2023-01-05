@@ -3,7 +3,7 @@
 
   <div style="margin:6px; padding: 10px;">
 
-    <cv-data-table :pagination="basicPagination" ref="table"   :zebra="true">
+    <cv-data-table  ref="table"   :zebra="true">
       <template  slot="data">
         <cv-data-table-row
           v-for="(row, rowIndex) in searchResults"

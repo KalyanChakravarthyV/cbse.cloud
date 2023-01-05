@@ -12,7 +12,8 @@
     "@carbon/vue": "^2.40.0",
     "core-js": "^3.4",
     "nuxt": "^2.15.7",
-    "posthog-js": "^1.39.0"
+    "posthog-js": "^1.39.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {}
 }

@@ -21,8 +21,12 @@
 </template>
 
 <script>
+//import {v4 as uuid} from 'uuid'
+
+
 export default {
   validate(data) {
+    //console.log('uuid:'+uuid())
     return true
   }
 };

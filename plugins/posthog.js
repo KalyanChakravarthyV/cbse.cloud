@@ -3,13 +3,15 @@
 import posthog from 'posthog-js'
 import Vue from 'vue'
 
+import {v4 as uuid} from 'uuid'
+
 export default function({ app: { router }, $config: { posthogPublicKey } }, inject) {
 
   // Init PostHog
   posthog.init(posthogPublicKey, {
     api_host: 'https://app.posthog.com',
     capture_pageview: false,
-    loaded: () => posthog.identify('unique_id') // If you can already identify your user
+    loaded: () => posthog.identify(uuid()) // If you can already identify your user
   })
 
   // Inject PostHog into the application and make it available via this.$posthog (or app.$posthog)

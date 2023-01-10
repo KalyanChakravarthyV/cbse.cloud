@@ -7,11 +7,18 @@ import {v4 as uuid} from 'uuid'
 
 export default function({ app: { router }, $config: { posthogPublicKey } }, inject) {
 
+  let storedUuid = localStorage.getItem('storedUuid')
+
+  if( storedUuid == null){
+    storedUuid = uuid()
+    localStorage.setItem('storedUuid',storedUuid)
+  }
+
   // Init PostHog
   posthog.init(posthogPublicKey, {
     api_host: 'https://app.posthog.com',
     capture_pageview: false,
-    loaded: () => posthog.identify(uuid()) // If you can already identify your user
+    loaded: () => posthog.identify(storedUuid) // If you can already identify your user
   })
 
   // Inject PostHog into the application and make it available via this.$posthog (or app.$posthog)

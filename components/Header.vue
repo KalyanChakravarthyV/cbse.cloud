@@ -42,7 +42,7 @@
     <cv-overflow-menu-item >
       <cv-link to="/about"  > About</cv-link>
     </cv-overflow-menu-item>
-    <cv-overflow-menu-item disabled>
+    <cv-overflow-menu-item>
       <cv-link to="/contact">Contact</cv-link>
     </cv-overflow-menu-item>
   </cv-overflow-menu>

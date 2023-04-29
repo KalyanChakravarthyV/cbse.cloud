@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "cbse.cloud",
+    title: "Empower Your Learning with CBSE.Cloud - Searchable Digital NCERT Syllabus Books",
     htmlAttrs: {
       lang: "en",
     },

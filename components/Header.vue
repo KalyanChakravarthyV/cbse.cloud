@@ -94,7 +94,7 @@ export default {
         "left": 0,
         "top": 0
       },
-      "label": "Oveflow menu",
+      "label": "Menu",
       "tipPosition": "right",
       "tipAlignment": "center"
     };

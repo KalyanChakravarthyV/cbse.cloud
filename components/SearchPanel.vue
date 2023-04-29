@@ -1,12 +1,27 @@
 <template>
-  
   <div style="margin: 6px; padding: 10px">
+    <!-- <cv-skeleton-text
+      :heading="heading"
+      :paragraph="paragraph"
+      :line-count="lineCount"
+      :width="width"
+    > -->
+
+      <p style="font-size: small;">
+      Welcome to cbse.cloud, the ultimate destination for students and teachers
+      looking for enhanced search abilities of digital copies of NCERT syllabus
+      CBSE books. Our website provides easy access to government-provided
+      digital books with added search capabilities based on topic, grade, and
+      subject.
+    </p>
+    <!-- </cv-skeleton-text> -->
     <div class="search_box">
       <!-- <h1>Search through all of the books</h1> -->
       <cv-text-input
         label="Search"
         v-model="sQ"
-        placeholder="for e.g: Trigonometry" @keyup.enter="onClick()"
+        placeholder="Class X Trigonometry"
+        @keyup.enter="onClick()"
       />
       <cv-button @click="onClick">Go!</cv-button>
       <!-- <cv-modal :visible="visible" @modal-hidden="modalClosed">
@@ -76,7 +91,7 @@ export default {
       return JSON.stringify(query);
     },
     search() {
-      this.$posthog.capture(`searched '${this.sQ}'`, { searchString: this.sQ })
+      this.$posthog.capture(`searched '${this.sQ}'`, { searchString: this.sQ });
 
       this.responseAvailable = false;
 
@@ -99,7 +114,6 @@ export default {
           }
         })
         .then((response) => {
-
           response.hits.hits.forEach((element) => {
             this.searchResults.push([
               element.fields.class[0],

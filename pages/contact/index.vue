@@ -1,7 +1,30 @@
     <template>
   <div class="container">
     <div style="margin: 6px; padding: 10px">
-      <cv-form @submit.prevent="onClick">
+      <cv-form
+        action="https://forms.zohopublic.in/individual30/form/ContactUs/formperma/VjPKE8eV7Jmh08IQIuzh-4bj31LvDc3y-zd1eZ2aH4c/htmlRecords/submit"
+        name="form"
+        id="form"
+        method="POST"
+        accept-charset="UTF-8"
+        enctype="multipart/form-data"
+      >
+        <input
+          type="hidden"
+          name="zf_referrer_name"
+          value=""
+        /><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+        <input
+          type="hidden"
+          name="zf_redirect_url"
+          value="https://cbse.cloud?returnFrom=zoho"
+        /><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+        <input
+          type="hidden"
+          name="zc_gad"
+          value=""
+        /><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+
         <cv-text-input
           label="First Name"
           placeholder="First Name"
@@ -21,9 +44,16 @@
         <cv-text-input
           label="Email"
           placeholder="anon@example.com"
+          type="email"
+          invalidText="Invalid Email"
+          required
+          @blur="validateEmail"
           name="Email"
           v-model="contactUsForm.Email"
         >
+          <template v-if="invalidEmail" slot="invalid-message"
+            >Invalid Email</template
+          >
         </cv-text-input>
 
         <cv-text-area
@@ -36,8 +66,20 @@
 
         <br />
 
-        <cv-button @click="onClick">Submit</cv-button>
+        <cv-button>Submit</cv-button>
       </cv-form>
+      <br />        <br />
+
+
+      <span>
+          Do not submit confidential information such as credit card details,
+          mobile and ATM PINs, OTPs, account passwords, etc.
+        </span>
+
+      <div style="padding: 6px"><span>Powered by</span> <a
+                href="https://www.zoho.in/forms?utm_source=freeuser&amp;utm_medium=banner&amp;utm_campaign=formfooter"
+                target="_blank">
+                Zoho Forms</a></div>
     </div>
   </div>
 </template>
@@ -49,52 +91,17 @@ export default {
   data() {
     return {
       contactUsForm: { Name_First: "", Name_Last: "", Email: "", Message: "" },
+      invalidEmail: false,
+      emailReg:
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
     };
   },
   methods: {
     onClick() {
       this.submit();
     },
-    modalClosed() {
-      this.visible = false;
-    },
-
-    submit() {
-      const formData = new FormData();
-      formData.append("Name_First", this.contactUsForm.Name_First);
-      formData.append("Name_Last", this.contactUsForm.Name_First);
-
-      formData.append("Email", this.contactUsForm.Email);
-
-      formData.append("Message", this.contactUsForm.Message);
-
-      console.log(this.contactUsForm);
-
-      fetch(
-        "https://forms.zohopublic.in/individual30/form/ContactUs/formperma/VjPKE8eV7Jmh08IQIuzh-4bj31LvDc3y-zd1eZ2aH4c/htmlRecords/submit",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded ; charset=UTF-8",
-          },
-          body: formData,
-        }
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            alert(
-              "Server returned " + response.status + " : " + response.statusText
-            );
-          }
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    validateEmail: function () {
+      this.invalidEmail = !this.emailReg.test(this.contactUsForm.Email);
     },
   },
 };

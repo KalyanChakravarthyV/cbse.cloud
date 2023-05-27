@@ -13,12 +13,12 @@
           type="hidden"
           name="zf_referrer_name"
           value=""
-        /><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+        />
         <input
           type="hidden"
           name="zf_redirect_url"
           value="https://cbse.cloud?returnFrom=zoho"
-        /><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+        />
         <input
           type="hidden"
           name="zc_gad"

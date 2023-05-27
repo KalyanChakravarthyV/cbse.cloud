@@ -3,6 +3,10 @@
 
   <div style="margin:6px; padding: 10px;">
 
+
+    <cv-data-table-skeleton   :columns="skeletonColumns "  v-if="skeleton"></cv-data-table-skeleton>
+
+
     <cv-data-table  ref="table"   :zebra="true">
       <template  slot="data">
         <cv-data-table-row
@@ -32,10 +36,16 @@ export default {
   props: {
     msg: String,
     searchResults: Array,
+    skeleton: Boolean
   },
 
   data() {
-    return {};
+    return {
+      
+      skeletonColumns: ['Searching...'
+      ],
+      data: []
+    };
   },
   methods: {
     actionSelected(data) {

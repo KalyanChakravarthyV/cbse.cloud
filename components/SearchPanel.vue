@@ -36,7 +36,7 @@
       </template>
     </cv-modal> -->
 
-      <SearchResults :searchResults="searchResults" />
+      <SearchResults :searchResults="searchResults" :skeleton="skeleton"/>
     </div>
   </div>
 </template>
@@ -49,6 +49,7 @@ export default {
       sQ: "",
       visible: false,
       searchResults: [],
+      skeleton :false
     };
   },
   methods: {
@@ -96,6 +97,7 @@ export default {
       this.responseAvailable = false;
 
       this.searchResults = [];
+      this.skeleton = true;
 
       fetch("https://elastic.cbse.cloud/ncert/_search", {
         method: "POST",
@@ -134,6 +136,8 @@ export default {
 
           // this.result = response.body;
           // this.responseAvailable = true;
+          this.skeleton = false;
+
         })
         .catch((err) => {
           console.log(err);

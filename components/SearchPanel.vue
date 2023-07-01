@@ -7,36 +7,33 @@
       :width="width"
     > -->
 
-      <p style="font-size: small;">
+    <p style="font-size: medium">
       Welcome to cbse.cloud, the ultimate destination for students and teachers
       looking for enhanced search abilities of digital copies of NCERT syllabus
       CBSE books. Our website provides easy access to government-provided
       digital books with added search capabilities based on topic, grade, and
       subject.
     </p>
-    <!-- </cv-skeleton-text> -->
-    <div class="search_box">
-      <!-- <h1>Search through all of the books</h1> -->
-      <cv-text-input
-        label="Search"
-        v-model="sQ"
-        placeholder="Class X Trigonometry"
-        @keyup.enter="onClick()"
-      />
-      <cv-button @click="onClick">Go!</cv-button>
-      <!-- <cv-modal :visible="visible" @modal-hidden="modalClosed">
-      <template slot="title">Welcome to cbse.cloud</template>
-      <template slot="content">
-        <p>
-          Our site is not ready yet{{
-            sQ ? " but stay tuned to know more about '" + sQ + "'" : "!"
-          }}
-          .
-        </p>
-      </template>
-    </cv-modal> -->
 
-      <SearchResults :searchResults="searchResults" :skeleton="skeleton"/>
+    <div class="search_box">
+     
+            <cv-text-input
+              label="Search"
+              v-model="searchData.sQ"
+              placeholder="Class X Trigonometry"
+              @keyup.enter="onClick()"
+            ></cv-text-input>
+
+            <br/>        
+            <cv-tag
+              filter
+              @remove="clearFilter({ searchData })"
+              @click="actionSelected({ searchData })"
+              :label="this.searchData.sQ"
+            ></cv-tag>
+
+            <cv-button @click="onClick">Go!</cv-button> <br/>
+            <SearchResults :searchData="this.searchData" />
     </div>
   </div>
 </template>
@@ -46,102 +43,32 @@ export default {
   name: "SearchPanel",
   data() {
     return {
-      sQ: "",
-      visible: false,
-      searchResults: [],
-      skeleton :false
+      searchData: {
+        sQ: "",
+        visible: false,
+        searchResults: [],
+        skltOn: false,
+        searchHits: 0,
+        errorOccurred: false,
+        skeletonResults: [{}, {}, {}, {}, {}],
+
+      },
+      responseAvailable : false
     };
   },
   methods: {
+
     onClick() {
-      this.visible = true;
+      this.searchData.visible = true;
       this.search();
     },
-    modalClosed() {
-      this.visible = false;
-    },
-    getElasticSearchQuery(qString) {
-      let query = {
-        query: {
-          match: {
-            data: {
-              query: qString,
-            },
-          },
-        },
-
-        highlight: {
-          pre_tags: ["<bold><em>"],
-          post_tags: ["</em></bold>"],
-          fields: {
-            data: {},
-          },
-        },
-
-        fields: [
-          "classNum",
-          "class",
-          "pageNumber",
-          "subjectName",
-          "chapter",
-          "pdfUrl",
-        ],
-        _source: false,
-      };
-
-      return JSON.stringify(query);
-    },
     search() {
-      this.$posthog.capture(`searched '${this.sQ}'`, { searchString: this.sQ });
-
+      this.$posthog.capture(`searched '${this.searchData.sQ}'`, { searchString: this.searchData.sQ });
       this.responseAvailable = false;
-
-      this.searchResults = [];
-      this.skeleton = true;
-
-      fetch("https://elastic.cbse.cloud/ncert/_search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: this.getElasticSearchQuery(this.sQ),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            alert(
-              "Server returned " + response.status + " : " + response.statusText
-            );
-          }
-        })
-        .then((response) => {
-          response.hits.hits.forEach((element) => {
-            this.searchResults.push([
-              element.fields.class[0],
-              element.fields.subjectName[0] + "-" + element.fields.chapter[0],
-              element.highlight.data.join("...<br/>") + "...",
-              element.fields.pdfUrl[0] +
-                "#page=" +
-                element.fields.pageNumber[0],
-            ]);
-            console.log([
-              element.fields.class[0],
-              element.fields.subjectName[0],
-              element.fields.chapter[0],
-              element.fields.pageNumber[0],
-              element.fields.pdfUrl[0],
-            ]);
-          });
-
-          // this.result = response.body;
-          // this.responseAvailable = true;
-          this.skeleton = false;
-
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.searchData.searchResults = [];
+      this.searchData.skltOn = true;
+      //the initial index 0 and length of 10, ideally this should be the first element from pagination sizes
+      this.$elastic.queryElastic(this.searchData, 0, 10);
     },
   },
 };

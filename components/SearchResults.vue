@@ -1,50 +1,70 @@
 <template>
-  <!-- width: 300px;-->
+  <div style="margin: 6px; padding: 10px">
+    <cv-tag
+      filter
+      @remove="clearFilter({ searchData })"
+      @click="actionSelected({ searchData })"
+      :label="JSON.stringify({sQ:searchData.sQ, skltOn:searchData.skltOn})"
+    />
 
-  <div style="margin:6px; padding: 10px;">
+    <p v-if="searchData.skltOn">Searching for `{{ searchData.sQ }}`</p>
 
+    <p v-if="!searchData.skltOn && searchData.searchResults.length > 0">
+      Found {{ searchData.searchHits }} results for `{{ searchData.sQ }}` <br />
+    </p>
 
-    <cv-data-table-skeleton   :columns="skeletonColumns "  v-if="skeleton"></cv-data-table-skeleton>
-
-
-    <cv-data-table  ref="table"   :zebra="true">
-      <template  slot="data">
+    <cv-data-table ref="skeletonTable" :zebra="true" v-if="searchData.skltOn">
+      <template slot="data">
         <cv-data-table-row
-          v-for="(row, rowIndex) in searchResults"
-          :key="`${rowIndex}`"  >
-        <div>
-          <!-- <cv-skeleton-text></cv-skeleton-text> -->
-          <cv-tile :zebra="true">
-              <h4>{{row[0]}} - {{row[1]}}</h4>
+          v-for="(row, rowIndex) in searchData.skeletonResults"
+          :key="`${rowIndex}`"
+        >
+          <cv-skeleton-text :paragraph="true" :line-count="5">
+          </cv-skeleton-text
+        ></cv-data-table-row>
+      </template>
+    </cv-data-table>
 
-          <cv-link style="padding:6px; color: #123;"
+    <Pagination :searchData="this.searchData" />
+
+    <cv-data-table ref="table" :zebra="true">
+      <template slot="data">
+        <cv-data-table-row
+          v-for="(row, rowIndex) in searchData.searchResults"
+          :key="`${rowIndex}`"
+        >
+          <div>
+            <cv-tile :zebra="true">
+              <h4>{{ row[0] }} - {{ row[1] }}</h4>
+
+              <cv-link
+                style="padding: 6px; color: #123"
                 :href="row[3]"
                 target="_blank"
-                v-html="row[2]"
+                ><p v-html="row[2]"></p
               ></cv-link>
-          </cv-tile>
-        </div>
+            </cv-tile>
+          </div>
         </cv-data-table-row>
       </template>
     </cv-data-table>
+
+    <!-- <Pagination :searchData="this.searchData"/> -->
   </div>
 </template>
-  
-  <script>
+
+<script>
 export default {
   name: "SearchResults",
   props: {
-    msg: String,
-    searchResults: Array,
-    skeleton: Boolean
+    searchData: Object,
   },
 
   data() {
     return {
-      
-      skeletonColumns: ['Searching...'
-      ],
-      data: []
+      // skeletonColumns: ["Searching..."],
+      data: [],
+      skeletonData: [],
     };
   },
   methods: {
@@ -52,7 +72,9 @@ export default {
       console.log(data);
     },
 
-    onSubmit() {},
+    clearFilter(data) {
+      console.log("Filter Cleared:", data.searchData.sQ);
+    }
   },
 };
 </script>

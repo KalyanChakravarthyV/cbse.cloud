@@ -21,6 +21,10 @@ export default {
   plugins: [
     "~/plugins/carbon.js",
     { src: "./plugins/posthog", mode: "client" },
+
+    "~/plugins/elastic.js"
+
+    // { src: "./plugins/elastic", mode: "server" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

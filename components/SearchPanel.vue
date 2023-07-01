@@ -25,12 +25,12 @@
             ></cv-text-input>
 
             <br/>        
-            <cv-tag
+            <!-- <cv-tag
               filter
               @remove="clearFilter({ searchData })"
               @click="actionSelected({ searchData })"
               :label="this.searchData.sQ"
-            ></cv-tag>
+            ></cv-tag> -->
 
             <cv-button @click="onClick">Go!</cv-button> <br/>
             <SearchResults :searchData="this.searchData" />

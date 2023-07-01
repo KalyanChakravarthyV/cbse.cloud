@@ -1,11 +1,11 @@
 <template>
   <div style="margin: 6px; padding: 10px">
-    <cv-tag
+    <!-- <cv-tag
       filter
       @remove="clearFilter({ searchData })"
       @click="actionSelected({ searchData })"
       :label="JSON.stringify({sQ:searchData.sQ, skltOn:searchData.skltOn})"
-    />
+    /> -->
 
     <p v-if="searchData.skltOn">Searching for `{{ searchData.sQ }}`</p>
 
@@ -25,7 +25,7 @@
       </template>
     </cv-data-table>
 
-    <Pagination :searchData="this.searchData" />
+    <Pagination :searchData="this.searchData"  v-if="!searchData.skltOn && searchData.searchResults.length > 0"/>
 
     <cv-data-table ref="table" :zebra="true">
       <template slot="data">

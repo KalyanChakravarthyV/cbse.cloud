@@ -41,6 +41,11 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
     queryElastic(searchData, start, length){
 
 
+      // if(start ==0) searchData.searchHits = 0;
+      searchData.searchResults.length = 0;
+
+      console.log("Searching:",searchData.sQ, start, length);
+
       fetch("https://elastic.cbse.cloud/ncert/_search", {
         method: "POST",
         headers: {
@@ -55,6 +60,8 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
             let msg = `Error with Elastic, returned e '${response.status}:${response.statusText}'`;
             this.$posthog.capture(msg);
             console.error(msg);
+            searchData.errorOccurred = true;
+
           }
         })
         .then((response) => {
@@ -68,19 +75,20 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
                 "#page=" +
                 element.fields.pageNumber[0],
             ]);
-            console.log([
-              element.fields.class[0],
-              element.fields.subjectName[0],
-              element.fields.chapter[0],
-              element.fields.pageNumber[0],
-              element.fields.pdfUrl[0],
-            ]);
+            // console.log([
+            //   element.fields.class[0],
+            //   element.fields.subjectName[0],
+            //   element.fields.chapter[0],
+            //   element.fields.pageNumber[0],
+            //   element.fields.pdfUrl[0],
+            // ]);
           });
 
           searchData.skltOn = false;
         })
         .catch((err) => {
           console.log(err);
+          searchData.errorOccurred = true;
         });
 
     }

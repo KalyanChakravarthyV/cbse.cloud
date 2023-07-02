@@ -45,13 +45,12 @@ export default {
     return {
       searchData: {
         sQ: "",
+        searchedQ: "",
         visible: false,
         searchResults: [],
         skltOn: false,
         searchHits: 0,
-        errorOccurred: false,
-        skeletonResults: [{}, {}, {}, {}, {}],
-
+        errorOccurred: false
       },
       responseAvailable : false
     };
@@ -69,6 +68,9 @@ export default {
       this.searchData.skltOn = true;
       //the initial index 0 and length of 10, ideally this should be the first element from pagination sizes
       this.$elastic.queryElastic(this.searchData, 0, 10);
+      this.searchData.searchedQ = this.searchData.sQ;
+      // this.searchData.skltOn = false;
+
     },
   },
 };

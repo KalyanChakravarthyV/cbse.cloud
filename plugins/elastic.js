@@ -40,8 +40,6 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
     },
     queryElastic(searchData, start, length){
 
-
-      // if(start ==0) searchData.searchHits = 0;
       searchData.searchResults.length = 0;
 
       console.log("Searching:",searchData.sQ, start, length);
@@ -57,10 +55,11 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
           if (response.ok) {
             return response.json();
           } else {
-            let msg = `Error with Elastic, returned e '${response.status}:${response.statusText}'`;
-            this.$posthog.capture(msg);
+            let msg = `Error with Elastic, returned e '${response.status}:${response.statusText}'` + JSON.stringify(searchData);
             console.error(msg);
             searchData.errorOccurred = true;
+
+            this.$posthog.capture(msg);
 
           }
         })
@@ -89,6 +88,7 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
         .catch((err) => {
           console.log(err);
           searchData.errorOccurred = true;
+          searchData.skltOn = false;
         });
 
     }

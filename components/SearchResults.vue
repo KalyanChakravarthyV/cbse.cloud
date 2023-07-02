@@ -7,16 +7,23 @@
       :label="JSON.stringify({sQ:searchData.sQ, skltOn:searchData.skltOn})"
     /> -->
 
-    <p v-if="searchData.skltOn">Searching for `{{ searchData.sQ }}`</p>
+    <p v-if="searchData.skltOn" style="font-size: small">Searching for `{{ searchData.sQ }}`<br /></p>
 
-    <p v-if="!searchData.skltOn && searchData.searchResults.length > 0">
-      Found {{ searchData.searchHits }} results for `{{ searchData.sQ }}` <br />
+    <p v-if="!searchData.skltOn && searchData.searchResults.length > 0"  style="font-size: small">
+      Found {{ searchData.searchHits }} results for `{{ searchData.searchedQ }}`<br />
     </p>
 
+    <p v-if="!searchData.skltOn && searchData.searchResults.length == 0 && searchData.searchedQ "  style="font-size: small">
+       No results found for `{{ searchData.searchedQ }}`<br />
+    </p>
+
+    <p v-if="searchData.errorOccurred"  style="font-size: small">
+      Error! Could not search for `{{ searchData.searchedQ }}`<br />
+    </p>
     <cv-data-table ref="skeletonTable" :zebra="true" v-if="searchData.skltOn">
       <template slot="data">
         <cv-data-table-row
-          v-for="(row, rowIndex) in searchData.skeletonResults"
+          v-for="(row, rowIndex) in this.skeletonResults"
           :key="`${rowIndex}`"
         >
           <cv-skeleton-text :paragraph="true" :line-count="5">
@@ -65,6 +72,8 @@ export default {
       // skeletonColumns: ["Searching..."],
       data: [],
       skeletonData: [],
+      skeletonResults: [{}, {}, {}, {}, {}],
+
     };
   },
   methods: {

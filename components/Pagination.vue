@@ -8,8 +8,7 @@
     :number-of-items="this.searchData.searchHits"
     :page="page"
     :page-sizes="pageSizes"
-    @change="onChange"
-  >
+    @change="onChange"  >
     <!-- :backwards-button-disabled="disableBackwards"
     :forwards-button-disabled="disabledForwards" -->
   </cv-pagination>

@@ -1,52 +1,20 @@
 <template>
-  <!--    
-<header class="header">
-        <ul class="nav-items">
-            <li>
-                <cv-link to="/">Home</cv-link>
-            </li>
-            <li>      <cv-link to="/about">About</cv-link>
-
-            </li>
-            <li>      <cv-link to="/contact">Contact</cv-link>
-
-            </li>
-        </ul>
-    </header>
-  <cv-overflow-menu
-    :flip-menu="flipMenu"
-    :up="up"
-    :offset="offset"
-    :label="label"
-    :tip-position="tipPosition"
-    :tip-alignment="tipAlignment"
-  >
-    <cv-overflow-menu-item primaryfocus>
-      <cv-link to="/">Home</cv-link>
-    </cv-overflow-menu-item>
-
-    <cv-overflow-menu-item>
-      <cv-link to="/about">About</cv-link>
-    </cv-overflow-menu-item>
-    <cv-overflow-menu-item>
-      <cv-link to="/contact">Contact</cv-link>
-    </cv-overflow-menu-item>
-  </cv-overflow-menu>
-
-    -->
-
-    <cv-overflow-menu :label="label">
-    <cv-overflow-menu-item primary-focus>
-      <cv-link to="/">Home</cv-link>
-    </cv-overflow-menu-item>
-    <cv-overflow-menu-item >
-      <cv-link to="/about"  > About</cv-link>
-    </cv-overflow-menu-item>
-    <cv-overflow-menu-item>
-      <cv-link to="/contact">Contact</cv-link>
-    </cv-overflow-menu-item>
-  </cv-overflow-menu>
+  <cv-header aria-label="Carbon header">
+    <cv-header-menu-button aria-label="Header menu" aria-controls="side-nav" />
+    <cv-skip-to-content href="#main-content">
+      Skip to content
+    </cv-skip-to-content>
+    <cv-header-name href="/" prefix=""
+      >CBSE.CLOUD
+    </cv-header-name>
+    <cv-header-nav aria-label="Carbon nav">
+      <cv-header-menu-item href="/about">About </cv-header-menu-item>
+      <cv-header-menu-item href="/contact">Contact </cv-header-menu-item>
+    </cv-header-nav>
+   </cv-header>
 </template>
+
+
 
 <style scoped>
 /*
@@ -88,23 +56,21 @@ export default {
   data() {
     return {
       label: "Home",
-      "flipMenu": false,
-      "up": false,
-      "offset": {
-        "left": 0,
-        "top": 0
+      flipMenu: false,
+      up: false,
+      offset: {
+        left: 0,
+        top: 0,
       },
-      "label": "Menu",
-      "tipPosition": "right",
-      "tipAlignment": "center"
+      label: "Menu",
+      tipPosition: "right",
+      tipAlignment: "center",
     };
   },
   methods: {
-
     navigate(data) {
-      console.log(data)
-    }
-
-  }
+      console.log(data);
+    },
+  },
 };
 </script>

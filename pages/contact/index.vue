@@ -1,5 +1,9 @@
     <template>
   <div class="container">
+
+    <div style="margin: 6px; padding: 10px">
+      <p> Please leave a message and we'll get back to you as soon as we can!</p>
+</div>
     <div style="margin: 6px; padding: 10px">
       <cv-form
         action="https://forms.zohopublic.in/individual30/form/ContactUs/formperma/VjPKE8eV7Jmh08IQIuzh-4bj31LvDc3y-zd1eZ2aH4c/htmlRecords/submit"

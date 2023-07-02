@@ -1,7 +1,7 @@
     <template>
   <div class="container">
 
-    <div style="margin: 6px; padding: 10px">
+    <div style="margin: 6px; padding: 10px; size:medium">
       <p> Please leave a message and we'll get back to you as soon as we can!</p>
 </div>
     <div style="margin: 6px; padding: 10px">
@@ -75,7 +75,7 @@
       <br />        <br />
 
 
-      <span>
+      <span style="padding: 6px">
           Do not submit confidential information such as credit card details,
           mobile and ATM PINs, OTPs, account passwords, etc.
         </span>

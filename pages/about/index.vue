@@ -1,8 +1,7 @@
 <template>
 <div class="container">
 <div class="margin: 6px">
-  <h3>About cbse.cloud</h3>
-  <p style="font-size: small">
+  <p style="font-size: medium">
       An open-source, always free-to-use platform making textbooks searchable <br/><br/>
 
       <code>cbse.cloud</code> is a platform dedicated to providing students and teachers with easy access to search capabilities of digital copies of NCERT syllabus CBSE books provided by the government.

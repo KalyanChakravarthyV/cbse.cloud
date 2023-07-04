@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <!-- <div class="cbse"> -->
-    <div><Header /></div><br><br><br><br>
+  <div class="container bx--content">
+    <div><Header /></div><br/><br/><br/><br/>
 
-    <div><nuxt /></div>
+    <div ><Nuxt /></div>
     <div><Footer /></div>
   </div>
 </template>
@@ -21,6 +20,7 @@ export default {
 
 
 <style>
+
 .cbse {
   /* background-color: grey;
    */

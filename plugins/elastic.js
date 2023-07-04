@@ -74,13 +74,6 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
                 "#page=" +
                 element.fields.pageNumber[0],
             ]);
-            // console.log([
-            //   element.fields.class[0],
-            //   element.fields.subjectName[0],
-            //   element.fields.chapter[0],
-            //   element.fields.pageNumber[0],
-            //   element.fields.pdfUrl[0],
-            // ]);
           });
 
           searchData.skltOn = false;

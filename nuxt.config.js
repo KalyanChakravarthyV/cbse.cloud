@@ -1,7 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Empower Your Learning with CBSE.Cloud - Searchable Digital NCERT Syllabus Books",
+    title:
+      "Empower Your Learning with CBSE.Cloud - Searchable Digital NCERT Syllabus Books",
     htmlAttrs: {
       lang: "en",
     },
@@ -15,16 +16,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/scss/global.scss'],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~/plugins/carbon.js",
     { src: "./plugins/posthog", mode: "client" },
 
-    "~/plugins/elastic.js"
-
-    // { src: "./plugins/elastic", mode: "server" },
+    "~/plugins/elastic.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -35,13 +34,18 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  /*
+   ** Build configuration
+   ** Doc: https://nuxtjs.org/api/configuration-build
+   */
   build: {
-    transpile: ["@carbon/vue/src/index"],
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {}
   },
 
   publicRuntimeConfig: {
     posthogPublicKey: process.env.POSTHOG_PUBLIC_KEY,
-  }
+  },
 };

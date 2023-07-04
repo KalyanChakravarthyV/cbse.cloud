@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 6px; padding: 10px">
+  <div>
     <!-- <cv-skeleton-text
       :heading="heading"
       :paragraph="paragraph"
@@ -14,15 +14,19 @@
       digital books with added search capabilities based on topic, grade, and
       subject.
     </p>
-
+    <br/>
     <div class="search_box">
      
-            <cv-text-input
-              label="Search"
+            <cv-search
+              label=""
               v-model="searchData.sQ"
               placeholder="Class X Trigonometry"
               @keyup.enter="onClick()"
-            ></cv-text-input>
+            ></cv-search>
+            <!-- <cv-button @click="onClick">Go!</cv-button> <br/> -->
+
+            <div class="bx--content">
+            <SearchResults :searchData="this.searchData" />
 
             <br/>        
             <!-- <cv-tag
@@ -30,10 +34,9 @@
               @remove="clearFilter({ searchData })"
               @click="actionSelected({ searchData })"
               :label="this.searchData.sQ"
-            ></cv-tag> -->
+            ></cv-tag>  -->
+          </div>
 
-            <cv-button @click="onClick">Go!</cv-button> <br/>
-            <SearchResults :searchData="this.searchData" />
     </div>
   </div>
 </template>

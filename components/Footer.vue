@@ -1,6 +1,6 @@
 <template>
-    <footer class="footer">
-<p style="margin: 6px; padding: 10px; font-size: small;"> Version - β202304300005</p>
+    <footer class="footer"><br/>
+<p style="font-size: small;"> Version - β202304300005</p>
     </footer>
 </template>
 

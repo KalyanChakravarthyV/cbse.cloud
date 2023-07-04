@@ -1,10 +1,10 @@
     <template>
   <div class="container">
 
-    <div style="margin: 6px; padding: 10px; size:medium">
+    <div>
       <p> Please leave a message and we'll get back to you as soon as we can!</p>
 </div>
-    <div style="margin: 6px; padding: 10px">
+    <div>
       <cv-form
         action="https://forms.zohopublic.in/individual30/form/ContactUs/formperma/VjPKE8eV7Jmh08IQIuzh-4bj31LvDc3y-zd1eZ2aH4c/htmlRecords/submit"
         name="form"
@@ -75,12 +75,12 @@
       <br />        <br />
 
 
-      <span style="padding: 6px">
+      <span >
           Do not submit confidential information such as credit card details,
           mobile and ATM PINs, OTPs, account passwords, etc.
         </span>
 
-      <div style="padding: 6px"><span>Powered by</span> <a
+      <div ><span>Powered by</span> <a
                 href="https://www.zoho.in/forms?utm_source=freeuser&amp;utm_medium=banner&amp;utm_campaign=formfooter"
                 target="_blank">
                 Zoho Forms</a></div>

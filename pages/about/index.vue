@@ -1,6 +1,6 @@
 <template>
-<div class="container">
-<div class="margin: 6px">
+<div>
+<div>
   <p style="font-size: medium">
       An open-source, always free-to-use platform making textbooks searchable <br/><br/>
 
@@ -31,12 +31,3 @@
 <script>
 
 </script>
-
-<style lang="css" scoped>
-div {
-  margin: 6px;
-}
-p {
-  margin: 3px;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 6px; padding: 10px">
+  <div>
     <!-- <cv-tag
       filter
       @remove="clearFilter({ searchData })"
@@ -7,10 +7,10 @@
       :label="JSON.stringify({sQ:searchData.sQ, skltOn:searchData.skltOn})"
     /> -->
 
-    <p v-if="searchData.skltOn" style="font-size: small">Searching for `{{ searchData.sQ }}`<br /></p>
-
+    <p v-if="searchData.skltOn" style="font-size: small">Searching for `{{ searchData.sQ }}`</p>
+    
     <p v-if="!searchData.skltOn && searchData.searchResults.length > 0"  style="font-size: small">
-      Found {{ searchData.searchHits }} results for `{{ searchData.searchedQ }}`<br />
+      Found {{ searchData.searchHits }} results for `{{ searchData.searchedQ }}`<br /><br />
     </p>
 
     <p v-if="!searchData.skltOn && searchData.searchResults.length == 0 && searchData.searchedQ "  style="font-size: small">
@@ -33,7 +33,6 @@
     </cv-data-table>
 
     <Pagination :searchData="this.searchData"  v-if="!searchData.skltOn && searchData.searchResults.length > 0"/>
-
     <cv-data-table ref="table" :zebra="true">
       <template slot="data">
         <cv-data-table-row
@@ -45,7 +44,7 @@
               <h4>{{ row[0] }} - {{ row[1] }}</h4>
 
               <cv-link
-                style="padding: 6px; color: #123"
+                style=" color: #123"
                 :href="row[3]"
                 target="_blank"
                 ><p v-html="row[2]"></p

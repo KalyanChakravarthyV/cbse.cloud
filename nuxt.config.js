@@ -47,5 +47,6 @@ export default {
 
   publicRuntimeConfig: {
     posthogPublicKey: process.env.POSTHOG_PUBLIC_KEY,
+    elasticURL: process.env.ELASTIC_URL
   },
 };

@@ -1,6 +1,6 @@
 
 
-export default function({ app: { router }, $config: { posthogPublicKey } }, inject) {
+export default function({ app: { router }, $config: { posthogPublicKey , elasticURL} }, inject) {
 
   let elClientWrapper = {"elClient" : {
      getElasticSearchQuery(qString,start,length) {
@@ -44,7 +44,7 @@ export default function({ app: { router }, $config: { posthogPublicKey } }, inje
 
       console.log("Searching:",searchData.sQ, start, length);
 
-      fetch("https://elastic.cbse.cloud/ncert/_search", {
+      fetch(elasticURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
